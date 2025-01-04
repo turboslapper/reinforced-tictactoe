@@ -1,0 +1,6 @@
+At 102 games, the current stats are:
+Wins: 50
+Losses: 47
+Stalemate: 5
+Current epsilon value: 0.10762448930456757
+Win rate is 0.49019607843137253
