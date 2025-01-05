@@ -354,14 +354,14 @@ while count < max_episodes:
         #     win_rate_history.append(current_win_rate) 
         #     game_intervals.append(count) 
 
-            # print_q_value(q_values)
+        #     print_q_value(q_values)
 
-            # print(f'At {count} games, the current stats are:')
-            # print(f'Wins: {win_count}')
-            # print(f'Losses: {loss_count}')
-            # print(f'Stalemate: {stalemate_count}')
-            # print(f'Current epsilon value: {epsilon_greedy}')
-            # print(f'Win rate is {current_win_rate * 100}%')
+        #     print(f'At {count} games, the current stats are:')
+        #     print(f'Wins: {win_count}')
+        #     print(f'Losses: {loss_count}')
+        #     print(f'Stalemate: {stalemate_count}')
+        #     print(f'Current epsilon value: {epsilon_greedy}')
+        #     print(f'Win rate is {current_win_rate * 100}%')
 
 pbar.close()
 
@@ -534,11 +534,9 @@ while True:
                 win_rate_history.append(win_rate)  
                 game_intervals.append(play_count) 
                 if play_count % 3 == 0: 
-                    current_win_rate = play_win_count / play_count 
-
                     print(f'At {play_count} games, the current stats are:')
                     print(f'Wins: {play_win_count}')
                     print(f'Losses: {play_loss_count}')
                     print(f'Stalemate: {play_stalemate_count}')
                     print(f'Current epsilon value: {epsilon_greedy}')
-                    print(f'Win rate is {current_win_rate * 100}%')
+                    print(f'Win rate is {win_rate * 100}%')
