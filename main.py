@@ -349,10 +349,10 @@ while count < max_episodes:
         epsilon_greedy = max(epsilon_greedy * 0.99, 0.05)
         count += 1
         pbar.update(1) 
-        if count % 1000 == 0: 
-            current_win_rate = win_count / count 
-            win_rate_history.append(current_win_rate) 
-            game_intervals.append(count) 
+        # if count % 100 == 0: 
+        #     current_win_rate = win_count / count 
+        #     win_rate_history.append(current_win_rate) 
+        #     game_intervals.append(count) 
 
             # print_q_value(q_values)
 
@@ -371,7 +371,7 @@ print(f'Wins: {win_count}')
 print(f'Losses: {loss_count}')
 print(f'Stalemate: {stalemate_count}')
 print(f'Current epsilon value: {epsilon_greedy}')
-print(f'Win rate is {current_win_rate * 100}%')
+print(f'Win rate is {(win_count/count) * 100}%')
 # print_q_value(q_values)
 
 play_count = 0
@@ -414,7 +414,6 @@ while True:
                 print(f'Win rate is {(play_win_count/play_count) * 100}%')
                 # print_q_value(q_values)
 
-                # After the loop ends, plot the win rate history
                 plt.figure(figsize=(10, 6))
                 plt.plot(game_intervals, win_rate_history, label="Win Rate", color='blue')
                 plt.title("Win Rate Over Time")
@@ -480,7 +479,7 @@ while True:
                     print(f"We chose to explore: ({row, col})")
                 else:
                     # print_state_q_values(q_values, last_state)
-                    max_action = max(q_values.get(last_state, {}).items(), key=lambda x: x[1])  # Returns (action, Q-value)
+                    max_action = max(q_values.get(last_state, {}).items(), key=lambda x: x[1])  
                     action, max_value = max_action
                     print_state_q_values(q_values, last_state)
                     print(f'We chose {action} with value: {max_value}')
@@ -498,7 +497,7 @@ while True:
                 new_state = tuple(tuple(row) for row in logical_board)
                 for i in range(3):
                     for j in range(3):
-                        if logical_board[i][j] == 0:  # Check if the cell is empty
+                        if logical_board[i][j] == 0:
                             if (i,j) not in q_values[new_state]:
                                 q_values[new_state][(i,j)] = 0.0
 
