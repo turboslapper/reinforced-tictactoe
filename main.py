@@ -23,7 +23,6 @@ def render_board(board, ximg, oimg):
     for i in range(3):
         for j in range(3):
             if board[i][j] == 'X':
-                # Create an X image and rect
                 graphical_board[i][j][0] = ximg
                 graphical_board[i][j][1] = ximg.get_rect(center=(j*300+150, i*300+150))
             elif board[i][j] == 'O':
@@ -41,7 +40,6 @@ def add_XO(board, graphical_board, to_move, logical_board):
     if board[row][col] != 'O' and board[row][col] != 'X':
         board[row][col] = to_move
 
-        # Update logical_board
         if to_move == 'X':
             logical_board[row][col] = 1  # 1 = X
             to_move = 'O'
@@ -61,10 +59,8 @@ def add_XO(board, graphical_board, to_move, logical_board):
 def place_O(board, logical_board, position):
     row, col = position
 
-    # Update the main board with 'O'
     board[row][col] = 'O'
 
-    # Update the logical board with integer 2 (representing O)
     logical_board[row][col] = 2
 
     return board, logical_board
@@ -72,10 +68,8 @@ def place_O(board, logical_board, position):
 def place_X(board, logical_board, position):
     row, col = position
 
-    # Update the main board with 'X'
     board[row][col] = 'X'
 
-    # Update the logical board with integer 1 (representing X)
     logical_board[row][col] = 1
 
     return board, logical_board
@@ -113,7 +107,7 @@ def check_win_update(board):
         if((board[row][0] == board[row][1] == board[row][2]) and (board [row][0] is not None)):
             winner = board[row][0]
             for i in range(0, 3):
-                graphical_board[row][i][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+                graphical_board[row][i][0] = pygame.image.load(f"assets/Winning {winner}.png")
                 SCREEN.blit(graphical_board[row][i][0], graphical_board[row][i][1])
             pygame.display.update()
             return winner
@@ -122,29 +116,29 @@ def check_win_update(board):
         if((board[0][col] == board[1][col] == board[2][col]) and (board[0][col] is not None)):
             winner =  board[0][col]
             for i in range(0, 3):
-                graphical_board[i][col][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+                graphical_board[i][col][0] = pygame.image.load(f"assets/Winning {winner}.png")
                 SCREEN.blit(graphical_board[i][col][0], graphical_board[i][col][1])
             pygame.display.update()
             return winner
    
     if (board[0][0] == board[1][1] == board[2][2]) and (board[0][0] is not None):
         winner =  board[0][0]
-        graphical_board[0][0][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[0][0][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[0][0][0], graphical_board[0][0][1])
-        graphical_board[1][1][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[1][1][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[1][1][0], graphical_board[1][1][1])
-        graphical_board[2][2][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[2][2][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[2][2][0], graphical_board[2][2][1])
         pygame.display.update()
         return winner
           
     if (board[0][2] == board[1][1] == board[2][0]) and (board[0][2] is not None):
         winner =  board[0][2]
-        graphical_board[0][2][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[0][2][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[0][2][0], graphical_board[0][2][1])
-        graphical_board[1][1][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[1][1][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[1][1][0], graphical_board[1][1][1])
-        graphical_board[2][0][0] = pygame.image.load(f"/home/codedemon/RLearning/Tic-Tac-Toe/assets/Winning {winner}.png")
+        graphical_board[2][0][0] = pygame.image.load(f"assets/Winning {winner}.png")
         SCREEN.blit(graphical_board[2][0][0], graphical_board[2][0][1])
         pygame.display.update()
         return winner
@@ -168,7 +162,6 @@ def print_q_value(q_values):
     print("=== Q-Values Table ===")
     for state, actions in q_values.items():
         print("State:")
-        # Convert the state (a tuple of tuples) to a readable grid format
         for row in state:
             print("  " + " ".join(str(cell) for cell in row))
         
@@ -193,20 +186,10 @@ def print_state_q_values(q_values, state):
     print("====================================\n")
 
 def prompt_for_rl_params():
-    """
-    Open a Tkinter dialog to ask the user for three RL parameters:
-    1) Max Episodes (integer)
-    2) Learning Rate (float)
-    3) Discount Factor (float)
-
-    Returns (max_episodes, learning_rate, discount_factor) as a tuple.
-    If the user cancels or closes any dialog, defaults are used.
-    """
 
     root = tk.Tk()
-    root.withdraw()  # Hide the empty main Tkinter window
+    root.withdraw() 
 
-    # Prompt for Max Episodes (integer)
     max_episodes = simpledialog.askinteger(
         title="Max Episodes",
         prompt="Enter the number of episodes you want to train for:",
@@ -217,7 +200,6 @@ def prompt_for_rl_params():
         print("No input provided for max_episodes. Using default = 20000.")
         max_episodes = 20000
 
-    # Prompt for Learning Rate (float)
     learning_rate = simpledialog.askfloat(
         title="Learning Rate",
         prompt="Enter the learning rate (alpha):\n(e.g., 0.1, 0.3, etc.)",
@@ -228,7 +210,6 @@ def prompt_for_rl_params():
         print("No input provided for alpha. Using default = 0.3.")
         learning_rate = 0.3
 
-    # Prompt for Discount Factor (float)
     discount_factor = simpledialog.askfloat(
         title="Discount Factor",
         prompt="Enter the discount factor (gamma):\n(e.g., 0.9, 0.99, etc.)",
@@ -239,9 +220,34 @@ def prompt_for_rl_params():
         print("No input provided for gamma. Using default = 0.9.")
         discount_factor = 0.9
 
-    root.destroy()  # Close the Tkinter root once done
+    root.destroy()  
 
     return max_episodes, learning_rate, discount_factor
+
+def prompt_for_player_choice():
+    import tkinter as tk
+    from tkinter import simpledialog, messagebox
+
+    root = tk.Tk()
+    root.withdraw()
+
+    options = ["X", "O"]
+    choice = simpledialog.askstring(
+        title="Player Choice",
+        prompt="Do you want to play as 'X' or 'O'?\n(Type 'X' or 'O')\nX goes first."
+    )
+
+    if choice is None or choice.upper() not in options:
+        messagebox.showinfo(
+            title="Default Choice",
+            message="Invalid or no input provided. Defaulting to 'X'."
+        )
+        choice = "X"
+
+    root.destroy()
+
+    return choice.upper()
+
 
 game_finished = False
 
@@ -252,11 +258,11 @@ stalemate_count = 0
 q_values = defaultdict(lambda: defaultdict(float))
 epsilon_greedy = 1.0
 
-# Initialize variables
 win_rate_history = []
 game_intervals = []
 
 max_episodes, learning_rate, discount_factor = prompt_for_rl_params()
+player_choice = prompt_for_player_choice()
 
 pbar = tqdm(total=max_episodes, desc="Training", ncols=80)
 
@@ -277,7 +283,7 @@ while count < max_episodes:
             [0, 0, 0],
             [0, 0, 0]
         ]
-        to_move = 'O'
+        to_move = player_choice
         
         game_finished = False
 
@@ -285,7 +291,6 @@ while count < max_episodes:
         empty_spots = get_empty_spots(logical_board)
         row, col = random.choice(empty_spots)
     
-        # Take the chosen action
         place_X(board, logical_board, (row, col))
         
         to_move = 'O'
@@ -294,14 +299,14 @@ while count < max_episodes:
         last_state = tuple(tuple(row) for row in logical_board)
         for i in range(3):
             for j in range(3):
-                if logical_board[i][j] == 0:  # Check if the cell is empty
+                if logical_board[i][j] == 0: 
                     if (i,j) not in q_values[last_state]:
                         q_values[last_state][(i,j)] = 0.0
 
         if random.random() <  epsilon_greedy:
             row, col = random.choice(get_empty_spots(logical_board))
         else:
-            max_action = max(q_values.get(last_state, {}).items(), key=lambda x: x[1])  # Returns (action, Q-value)
+            max_action = max(q_values.get(last_state, {}).items(), key=lambda x: x[1]) 
             action, max_value = max_action
             row, col = action
 
@@ -310,7 +315,7 @@ while count < max_episodes:
         new_state = tuple(tuple(row) for row in logical_board)
         for i in range(3):
             for j in range(3):
-                if logical_board[i][j] == 0:  # Check if the cell is empty
+                if logical_board[i][j] == 0:
                     if (i,j) not in q_values[new_state]:
                         q_values[new_state][(i,j)] = 0.0
 
@@ -343,11 +348,11 @@ while count < max_episodes:
         # 0.9999 Seems to yield the best results
         epsilon_greedy = max(epsilon_greedy * 0.99, 0.05)
         count += 1
-        pbar.update(1)  # Update the progress bar
-        if count % 1000 == 0:  # Check if 'count' is a multiple of 500
-            current_win_rate = win_count / count  # Calculate the win rate
-            win_rate_history.append(current_win_rate)  # Store the win rate
-            game_intervals.append(count)  # Store the game interval for x-axis
+        pbar.update(1) 
+        if count % 1000 == 0: 
+            current_win_rate = win_count / count 
+            win_rate_history.append(current_win_rate) 
+            game_intervals.append(count) 
 
             # print_q_value(q_values)
 
@@ -440,7 +445,7 @@ while True:
                     [0, 0, 0],
                     [0, 0, 0]
                 ]
-                to_move = 'O'
+                to_move = player_choice
                 
                 SCREEN.fill(BG_COLOR)
                 SCREEN.blit(BOARD, (64, 64))
@@ -466,7 +471,7 @@ while True:
                 last_state = tuple(tuple(row) for row in logical_board)
                 for i in range(3):
                     for j in range(3):
-                        if logical_board[i][j] == 0:  # Check if the cell is empty
+                        if logical_board[i][j] == 0:
                             if (i,j) not in q_values[last_state]:
                                 q_values[last_state][(i,j)] = 0.0
 
@@ -526,10 +531,11 @@ while True:
                 # 0.9999 Seems to yield the best results
                 epsilon_greedy = max(epsilon_greedy * 0.99, 0.05)
                 play_count += 1
-                if play_count % 3 == 0:  # Check if 'play_count' is a multiple of 500
-                    current_win_rate = play_win_count / play_count  # Calculate the win rate
-                    win_rate_history.append(current_win_rate)  # Store the win rate
-                    game_intervals.append(play_count)  # Store the game interval for x-axis
+                win_rate = play_win_count / play_count 
+                win_rate_history.append(win_rate)  
+                game_intervals.append(play_count) 
+                if play_count % 3 == 0: 
+                    current_win_rate = play_win_count / play_count 
 
                     print(f'At {play_count} games, the current stats are:')
                     print(f'Wins: {play_win_count}')
