@@ -260,6 +260,11 @@ stalemate_count = 0
 q_values = defaultdict(lambda: defaultdict(float))
 epsilon_greedy = 1.0
 
+x_q_values = defaultdict(lambda: defaultdict(float))
+x_epsilon_greedy = 1.0
+x_learning_rate = 0.3
+x_discount_factor = 0.9
+
 win_rate_history = []
 game_intervals = []
 
@@ -290,11 +295,37 @@ while count < max_episodes:
         game_finished = False
 
     if to_move == "X":
-        empty_spots = get_empty_spots(logical_board)
-        row, col = random.choice(empty_spots)
-    
-        place_X(board, logical_board, (row, col))
-        
+        x_last_state = tuple(tuple(row) for row in logical_board)
+        for i in range(3):
+            for j in range(3):
+                if logical_board[i][j] == 0: 
+                    if (i,j) not in x_q_values[x_last_state]:
+                        x_q_values[x_last_state][(i,j)] = 0.0
+
+        if random.random() <  x_epsilon_greedy:
+            row1, col1 = random.choice(get_empty_spots(logical_board))
+        else:
+            max_action1 = max(x_q_values.get(x_last_state, {}).items(), key=lambda x: x[1]) 
+            action1, max_value1 = max_action1
+            row1, col1 = action1
+
+        place_X(board, logical_board, (row1, col1))
+
+        x_new_state = tuple(tuple(row) for row in logical_board)
+        for i in range(3):
+            for j in range(3):
+                if logical_board[i][j] == 0:
+                    if (i,j) not in x_q_values[x_new_state]:
+                        x_q_values[x_new_state][(i,j)] = 0.0
+
+        reward1 = 0
+        actions_dict1 = x_q_values.get(x_new_state, {})
+        if len(actions_dict1) == 0:
+            max_value1 = 0.0
+        else:
+            action1, max_value1 = max(actions_dict1.items(), key=lambda x: x[1])
+        x_q_values[x_last_state][(row1, col1)] = x_q_values[x_last_state][(row1, col1)] + x_learning_rate*(reward1 + x_discount_factor*(max_value1) - x_q_values[x_last_state][(row1, col1)])
+
         to_move = 'O'
 
     else:
@@ -335,14 +366,17 @@ while count < max_episodes:
     if winner is not None:
         if winner == "X":
             reward = -1
+            x_q_values[x_last_state][(row1, col1)] = x_q_values[x_last_state][(row1, col1)] + x_learning_rate*(1 - x_q_values[x_last_state][(row1, col1)])
             q_values[last_state][(row, col)] = q_values[last_state][(row, col)] + learning_rate*(reward - q_values[last_state][(row, col)])
             loss_count += 1
         elif winner == "O":
             reward = 1
+            x_q_values[x_last_state][(row1, col1)] = x_q_values[x_last_state][(row1, col1)] + x_learning_rate*(-1 - x_q_values[x_last_state][(row1, col1)])
             q_values[last_state][(row, col)] = q_values[last_state][(row, col)] + learning_rate*(reward - q_values[last_state][(row, col)])
             win_count += 1
         else:
             reward = 0
+            x_q_values[x_last_state][(row1, col1)] = x_q_values[x_last_state][(row1, col1)] + x_learning_rate*(0 - x_q_values[x_last_state][(row1, col1)])
             q_values[last_state][(row, col)] = q_values[last_state][(row, col)] + learning_rate*(reward - q_values[last_state][(row, col)])
             stalemate_count += 1
 
@@ -380,7 +414,7 @@ play_count = 0
 play_win_count = 0
 play_loss_count = 0
 play_stalemate_count = 0
-epsilon_greedy = 0.5
+epsilon_greedy = 0.2
 
 win_rate_history = []
 game_intervals = []
@@ -530,7 +564,7 @@ while True:
 
                 game_finished = True
                 # 0.9999 Seems to yield the best results
-                epsilon_greedy = max(epsilon_greedy * 0.99, 0.05)
+                epsilon_greedy = max(epsilon_greedy * 0.85, 0.05)
                 play_count += 1
                 win_rate = play_win_count / play_count 
                 win_rate_history.append(win_rate)  

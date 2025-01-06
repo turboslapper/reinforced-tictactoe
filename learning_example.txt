@@ -1,0 +1,208 @@
+=== Q-Values for the Given State ===
+State:
+  0 0 0
+  0 0 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 0): Q-value = -0.00
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 1): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 0) with value: -0.004999999999999999
+=== Q-Values for the Given State ===
+State:
+  2 0 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 1) with value: -0.004999999999999999
+=== Q-Values for the Given State ===
+State:
+  2 2 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 2): Q-value = 0.00
+  Action (1, 0): Q-value = 0.00
+  Action (1, 2): Q-value = 0.00
+  Action (2, 0): Q-value = 0.00
+  Action (2, 1): Q-value = 0.00
+  Action (2, 2): Q-value = 0.00
+====================================
+
+We chose (0, 2) with value: 0.0
+=== Q-Values for the Given State ===
+State:
+  0 0 0
+  0 0 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 0): Q-value = -0.00
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 1): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 0) with value: -0.0034999999999999996
+=== Q-Values for the Given State ===
+State:
+  2 0 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 1) with value: -0.0034999999999999996
+=== Q-Values for the Given State ===
+State:
+  2 2 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 2): Q-value = 0.30
+  Action (1, 0): Q-value = 0.00
+  Action (1, 2): Q-value = 0.00
+  Action (2, 0): Q-value = 0.00
+  Action (2, 1): Q-value = 0.00
+  Action (2, 2): Q-value = 0.00
+====================================
+
+We chose (0, 2) with value: 0.3
+=== Q-Values for the Given State ===
+State:
+  0 0 0
+  0 0 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 0): Q-value = -0.00
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 1): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 0) with value: -0.00245
+=== Q-Values for the Given State ===
+State:
+  2 0 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 1): Q-value = 0.08
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 1) with value: 0.07855
+=== Q-Values for the Given State ===
+State:
+  2 2 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 2): Q-value = 0.45
+  Action (1, 0): Q-value = 0.00
+  Action (1, 2): Q-value = 0.00
+  Action (2, 0): Q-value = 0.00
+  Action (2, 1): Q-value = 0.00
+  Action (2, 2): Q-value = 0.00
+====================================
+
+We chose (0, 2) with value: 0.44699999999999995
+=== Q-Values for the Given State ===
+State:
+  0 0 0
+  0 0 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 0): Q-value = -0.00
+  Action (0, 1): Q-value = -0.00
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 1): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 0) with value: -0.0012005
+=== Q-Values for the Given State ===
+State:
+  2 0 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 1): Q-value = 0.18
+  Action (0, 2): Q-value = -0.00
+  Action (1, 0): Q-value = -0.00
+  Action (1, 2): Q-value = -0.00
+  Action (2, 0): Q-value = -0.00
+  Action (2, 1): Q-value = -0.00
+  Action (2, 2): Q-value = -0.00
+====================================
+
+We chose (0, 1) with value: 0.17567499999999997
+=== Q-Values for the Given State ===
+State:
+  2 2 0
+  0 1 0
+  0 0 0
+
+Actions and Q-values:
+  Action (0, 2): Q-value = 0.52
+  Action (1, 0): Q-value = 0.00
+  Action (1, 2): Q-value = 0.00
+  Action (2, 0): Q-value = 0.00
+  Action (2, 1): Q-value = 0.00
+  Action (2, 2): Q-value = 0.00
+====================================
+
+We chose (0, 2) with value: 0.51903
