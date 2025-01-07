@@ -227,28 +227,38 @@ def prompt_for_rl_params():
     return max_episodes, learning_rate, discount_factor
 
 def prompt_for_player_choice():
-    import tkinter as tk
-    from tkinter import simpledialog, messagebox
+    def set_choice(selected_choice):
+        nonlocal choice
+        choice = selected_choice
+        root.destroy()  # Close the window once a choice is made
 
     root = tk.Tk()
-    root.withdraw()
+    root.title("Player Choice")
 
-    options = ["X", "O"]
-    choice = simpledialog.askstring(
-        title="Player Choice",
-        prompt="Do you want to play as 'X' or 'O'?\n(Type 'X' or 'O')\nX goes first."
-    )
+    # Set the window size and position
+    root.geometry("300x150")
+    root.eval('tk::PlaceWindow . center')  # Center the window
 
-    if choice is None or choice.upper() not in options:
-        messagebox.showinfo(
-            title="Default Choice",
-            message="Invalid or no input provided. Defaulting to 'X'."
-        )
+    # Add label
+    label = tk.Label(root, text="Choose your player (X or O):", font=("Helvetica", 12))
+    label.pack(pady=10)
+
+    # Add buttons for "X" and "O"
+    button_x = tk.Button(root, text="X", font=("Helvetica", 14), width=10, command=lambda: set_choice("X"))
+    button_x.pack(pady=5)
+
+    button_o = tk.Button(root, text="O", font=("Helvetica", 14), width=10, command=lambda: set_choice("O"))
+    button_o.pack(pady=5)
+
+    # Initialize choice
+    choice = None
+    root.mainloop()  # Run the Tkinter event loop
+
+    # Default to "X" if no choice was made (e.g., the window was closed)
+    if choice is None:
         choice = "X"
 
-    root.destroy()
-
-    return choice.upper()
+    return choice
 
 
 game_finished = False
@@ -414,7 +424,7 @@ play_count = 0
 play_win_count = 0
 play_loss_count = 0
 play_stalemate_count = 0
-epsilon_greedy = 0.2
+epsilon_greedy = 0.3
 
 win_rate_history = []
 game_intervals = []
@@ -564,7 +574,7 @@ while True:
 
                 game_finished = True
                 # 0.9999 Seems to yield the best results
-                epsilon_greedy = max(epsilon_greedy * 0.85, 0.05)
+                epsilon_greedy = max(epsilon_greedy * 0.85, 0.1)
                 play_count += 1
                 win_rate = play_win_count / play_count 
                 win_rate_history.append(win_rate)  
