@@ -424,7 +424,7 @@ play_count = 0
 play_win_count = 0
 play_loss_count = 0
 play_stalemate_count = 0
-epsilon_greedy = 0.3
+epsilon_greedy = 0.4
 
 win_rate_history = []
 game_intervals = []
@@ -574,7 +574,7 @@ while True:
 
                 game_finished = True
                 # 0.9999 Seems to yield the best results
-                epsilon_greedy = max(epsilon_greedy * 0.85, 0.1)
+                epsilon_greedy = max(epsilon_greedy * 0.93, 0.1)
                 play_count += 1
                 win_rate = play_win_count / play_count 
                 win_rate_history.append(win_rate)  
