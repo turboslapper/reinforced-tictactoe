@@ -240,14 +240,14 @@ def prompt_for_player_choice():
     root.eval('tk::PlaceWindow . center')  # Center the window
 
     # Add label
-    label = tk.Label(root, text="Choose your player (X or O):", font=("Helvetica", 12))
+    label = tk.Label(root, text="Would you like to go first or second?", font=("Helvetica", 12))
     label.pack(pady=10)
 
     # Add buttons for "X" and "O"
-    button_x = tk.Button(root, text="X", font=("Helvetica", 14), width=10, command=lambda: set_choice("X"))
+    button_x = tk.Button(root, text="First", font=("Helvetica", 14), width=10, command=lambda: set_choice("X"))
     button_x.pack(pady=5)
 
-    button_o = tk.Button(root, text="O", font=("Helvetica", 14), width=10, command=lambda: set_choice("O"))
+    button_o = tk.Button(root, text="Second", font=("Helvetica", 14), width=10, command=lambda: set_choice("O"))
     button_o.pack(pady=5)
 
     # Initialize choice
@@ -488,12 +488,12 @@ while True:
 
                 if random.random() <  epsilon_greedy:
                     row, col = random.choice(get_empty_spots(logical_board))
-                    # print(f"We chose to explore: ({row, col})")
+                    print(f"We chose to explore: ({row, col})")
                 else:
                     max_action = max(q_values.get(last_state, {}).items(), key=lambda x: x[1])  
                     action, max_value = max_action
-                    # print_state_q_values(q_values, last_state)
-                    # print(f'We chose {action} with value: {max_value}')
+                    print_state_q_values(q_values, last_state)
+                    print(f'We chose {action} with value: {max_value}')
                     row, col = action
 
                 place_O(board, logical_board, (row,col))
